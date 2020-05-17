@@ -1,18 +1,19 @@
 package com.company;
 
+
+import java.io.*;
+import java.lang.reflect.Method;
+import java.util.Properties;
+
+
 public class Main {
 
-    public static void main(String[] args) {
-      // creating instance of interface using lambda expression
-        Pc Acer = ()->
-                System.out.println("Ms Word Working.....");
+    public static void main(String[] args) throws  Exception {
 
-// calling method of interface
-        Acer.MsWord();
-    }
+        Class c = Class.forName("com.company.Test");
+        Test t = (Test)c.newInstance();
 
-
-        interface Pc {
-            void MsWord();
-        }
-    }
+        Method m = c.getDeclaredMethod("show",null);
+        m.setAccessible(true);
+        m.invoke(t,null);
+    }}
